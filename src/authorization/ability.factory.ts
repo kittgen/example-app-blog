@@ -1,13 +1,13 @@
 import { Ability, AbilityBuilder, AbilityClass } from '@casl/ability'
 import { Injectable } from '@nestjs/common';
+import { User } from '../users/entities/user.entity';
 import { RolesService } from '../roles/roles.service';
 
-type User = 'todo-user'
-type Action = 'todo-action'
-type Subjects = 'todo-subject'
+export type Action = 'read' | 'update';
+export type Subject = 'article' | 'tag';
 
 
-export type KgAbility = Ability<[Action, Subjects]>;
+export type KgAbility = Ability<[Action, Subject]>;
 
 @Injectable()
 export class AbilityFactory {
@@ -16,13 +16,13 @@ export class AbilityFactory {
     ) {}
 
     createForUser(user: User) {
-        const { can, cannot, build } = new AbilityBuilder<Ability<[Action, Subjects]>>(Ability as AbilityClass<KgAbility>);
+        const { can, cannot, build } = new AbilityBuilder<Ability<[Action, Subject]>>(Ability as AbilityClass<KgAbility>);
         
         const roles = this.rolesService.getRolesForUser(user)
-        const permissions = roles.flatMap(role => role.getPermissions())
+        const permissions = roles.flatMap(role => role.permissions)
 
-        permissions.forEach(permission => can(permission.getAction(), permission.getSubject()))
+        permissions.forEach(permission => can(permission.action, permission.subject))
 
-        return build()
+        return build();
     }
 }

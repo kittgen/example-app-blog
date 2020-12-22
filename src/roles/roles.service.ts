@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { Permission } from '../permissions/entities/permission.entity';
+import { User } from '../users/entities/user.entity';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
 import { Role } from './entities/role.entity';
@@ -6,8 +8,11 @@ import { Role } from './entities/role.entity';
 @Injectable()
 export class RolesService {
  
-  getRolesForUser(user: string) {
-    return [ new Role() ]
+  getRolesForUser(user: User): Role[] {
+    if (user.id === 'uid-1') {
+      return [new Role([new Permission('read', 'article')])];
+    }
+    return [new Role([new Permission('read', 'article'), new Permission('update', 'article')])];
   }
 
   create(createRoleDto: CreateRoleDto) {
