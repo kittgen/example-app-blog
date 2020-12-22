@@ -6,9 +6,10 @@ import { TagsModule } from './tags/tags.module';
 import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { PermissionsModule } from './permissions/permissions.module';
+import { AuthorizationModule } from './authorization/authorization.module';
 
 @Module({
-  imports: [ArticlesModule, TagsModule, UsersModule, RolesModule, PermissionsModule],
+  imports: [ArticlesModule, TagsModule, UsersModule, RolesModule, PermissionsModule, AuthorizationModule],
   controllers: [AppController],
   providers: [AppService],
 })

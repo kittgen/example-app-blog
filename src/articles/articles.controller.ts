@@ -16,7 +16,7 @@ export class ArticlesController {
   findAll() {
     return this.articlesService.findAll();
   }
-
+  
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.articlesService.findOne(+id);

@@ -1,1 +1,3 @@
-export class Article {}
+export class Article {
+    id: string
+}
