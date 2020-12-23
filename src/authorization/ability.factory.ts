@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { User } from '../users/entities/user.entity';
 import { RolesService } from '../roles/roles.service';
 
-export type Action = 'read' | 'update';
+export type Action = 'read' | 'update' | 'delete';
 export type Subject = 'article' | 'tag';
 
 
