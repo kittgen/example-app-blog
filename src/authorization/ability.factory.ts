@@ -19,8 +19,8 @@ export class AbilityFactory {
         const { can, cannot, build } = new AbilityBuilder<Ability<[Action, Subject]>>(Ability as AbilityClass<KgAbility>);
         
         const roles = this.rolesService.getRolesForUser(user)
-        const permissions = roles.flatMap(role => role.permissions)
-
+        //const permissions = roles.flatMap(role => role.permissions)
+        const permissions = []
         permissions.forEach(permission => can(permission.action, permission.subject))
 
         return build();

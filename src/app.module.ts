@@ -7,9 +7,10 @@ import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { PermissionsModule } from './permissions/permissions.module';
 import { AuthorizationModule } from './authorization/authorization.module';
+import { MediaModule } from './media/media.module';
 
 @Module({
-  imports: [ArticlesModule, TagsModule, UsersModule, RolesModule, PermissionsModule, AuthorizationModule],
+  imports: [ArticlesModule, TagsModule, UsersModule, RolesModule, PermissionsModule, AuthorizationModule, MediaModule],
   controllers: [AppController],
   providers: [AppService],
 })

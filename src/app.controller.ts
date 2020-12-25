@@ -10,7 +10,7 @@ export class AppController {
 
   constructor(private readonly appService: AppService, private abilityFactory: AbilityFactory) {}
 
-  @Get(':id')
+  //@Get(':id')
   getHello(@Param() { id }): string {
     const user = new User(`uid-${id}`);
     const ability = this.abilityFactory.createForUser(user);
