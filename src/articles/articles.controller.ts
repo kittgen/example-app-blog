@@ -1,10 +1,19 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Put,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { IsAuthor } from './is-author.condition';
 import { ArticlesService } from './articles.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
 import { Authz } from '../authorization/authz.decorator';
 import { Permission } from '../permissions/entities/permission.entity';
+import { ArticleAuthAction } from './articles.auth-action';
 
 @Controller('articles')
 export class ArticlesController {
@@ -21,20 +30,20 @@ export class ArticlesController {
   }
 
   @Get(':id')
-  @Authz(new Permission('read', 'article'))
+  @Authz([new Permission(ArticleAuthAction.Read)])
   findOne(@Param('id') id: string) {
     return this.articlesService.findOne(id);
   }
 
   @Put(':id')
   // IsAuthor is additional condition
-  @Authz(new Permission('update', 'article'), IsAuthor)
+  @Authz([new Permission(ArticleAuthAction.Update)], IsAuthor)
   update(@Param('id') id: string, @Body() updateArticleDto: UpdateArticleDto) {
-    return this.articlesService.update(+id, updateArticleDto);
+    return this.articlesService.update(id, updateArticleDto);
   }
 
   @Delete(':id')
-  @Authz(new Permission('delete', 'article'), IsAuthor)
+  @Authz([new Permission(ArticleAuthAction.Delete)], IsAuthor)
   remove(@Param('id') id: string) {
     return this.articlesService.remove(+id);
   }

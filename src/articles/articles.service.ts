@@ -20,7 +20,7 @@ export class ArticlesService {
     return new Article('art-2', 'uid-2');
   }
 
-  update(id: number, updateArticleDto: UpdateArticleDto) {
+  update(id: string, updateArticleDto: UpdateArticleDto) {
     return `This action updates a #${id} article`;
   }
 
