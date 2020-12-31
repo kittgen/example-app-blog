@@ -6,4 +6,4 @@ interface IPolicyHandler {
 
 type PolicyHandlerCallback = (ability: KgAbility) => boolean
 
-export type PolicyHandler = IPolicyHandler | PolicyHandlerCallback
+export type PolicyHandler = IPolicyHandler | PolicyHandlerCallback7667
