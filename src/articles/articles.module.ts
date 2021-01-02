@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ArticlesService } from './articles.service';
 import { ArticlesController } from './articles.controller';
-import { IsAuthor } from './is-author.condition';
 import { AuthorizationModule } from '../authorization/authorization.module';
-import { RolesModule } from '../roles/roles.module';
+import { IsAuthor } from './is-author.condition';
 
 @Module({
-  imports: [AuthorizationModule, RolesModule],
+  imports: [AuthorizationModule],
   controllers: [ArticlesController],
   providers: [ArticlesService, IsAuthor],
+  exports: [IsAuthor],
 })
 export class ArticlesModule {}

@@ -1,8 +1,5 @@
-import { Permission } from "../../permissions/entities/permission.entity";
+import { Permission } from '../../authorization/permissions/permission';
 
 export class Role {
-
-    constructor(readonly permissions: Permission[]) {
-
-    }
+  constructor(readonly permissions: Permission[]) {}
 }
