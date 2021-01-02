@@ -23,8 +23,11 @@ export class ArticlesController {
   }
 
   @Get()
-  findAll() {
-    return this.articlesService.findAll();
+  findAll(@XQuery() query) {
+    return {
+      query: query,
+      articles: this.articlesService.findAll()
+    }
   }
 
   @Get(':id')

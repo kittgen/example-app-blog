@@ -10,7 +10,11 @@ export class ArticlesService {
   }
 
   findAll() {
-    return `This action returns all articles`;
+    return [
+      new Article("1", "test", 2, new Date()),
+      new Article("2", "test2", 3, new Date()),
+      new Article("3", "test3", 4, new Date()),
+    ]
   }
 
   findOne(id: string) {
