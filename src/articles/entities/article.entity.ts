@@ -1,3 +1,3 @@
 export class Article {
-    id: string
+    constructor(readonly id: string, readonly authorId: string) {}
 }

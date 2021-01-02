@@ -1,7 +1,17 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Put,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ArticlesService } from './articles.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
+import { AuthAction } from '../authorization/auth-action.decorator';
+import { ArticleAuthAction } from './articles.auth-action';
 
 @Controller('articles')
 export class ArticlesController {
@@ -18,16 +28,20 @@ export class ArticlesController {
   }
 
   @Get(':id')
+  @AuthAction([ArticleAuthAction.Read])
   findOne(@Param('id') id: string) {
-    return this.articlesService.findOne(+id);
+    return this.articlesService.findOne(id);
   }
 
   @Put(':id')
+  // IsAuthor is additional condition
+  @AuthAction([ArticleAuthAction.Update])
   update(@Param('id') id: string, @Body() updateArticleDto: UpdateArticleDto) {
-    return this.articlesService.update(+id, updateArticleDto);
+    return this.articlesService.update(id, updateArticleDto);
   }
 
   @Delete(':id')
+  @AuthAction([ArticleAuthAction.Delete])
   remove(@Param('id') id: string) {
     return this.articlesService.remove(+id);
   }
