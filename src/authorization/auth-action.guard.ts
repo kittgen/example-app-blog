@@ -4,17 +4,17 @@ import {
   Injectable,
   mixin,
 } from '@nestjs/common';
+import { PermissionProvider } from './permission.provider';
 import { PermissionSet } from './permissions/permission-set';
-import { AuthzService } from './authz.service';
 
 export const AuthActionGuard = (actions: string[]) => {
   @Injectable()
   class AuthActionGuardImpl implements CanActivate {
-    constructor(private authzService: AuthzService) {}
+    constructor(private permissionProvider: PermissionProvider) {}
 
     async canActivate(context: ExecutionContext): Promise<boolean> {
       const req = context.switchToHttp().getRequest();
-      const permissionsOfUser = await this.authzService.findPermissionsForUser(
+      const permissionsOfUser = await this.permissionProvider.findPermissionsForUser(
         req.user,
       );
       const permissionSet = new PermissionSet(permissionsOfUser);
