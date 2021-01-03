@@ -11,17 +11,17 @@ export class ArticlesService {
 
   findAll() {
     return [
-      new Article("1", "test", 2, new Date()),
-      new Article("2", "test2", 3, new Date()),
-      new Article("3", "test3", 4, new Date()),
+      new Article("1", "23", "test", 2, new Date()),
+      new Article("2", "23", "test2", 3, new Date()),
+      new Article("3", "23", "test3", 4, new Date()),
     ]
   }
 
   findOne(id: string) {
     if (id === 'art-1') {
-      return new Article('art-1', 'uid-1');
+      return new Article('art-1', 'uid-1', "test", 2, new Date());
     }
-    return new Article('art-2', 'uid-2');
+    return new Article('art-2', 'uid-2', "test", 2, new Date());
   }
 
   update(id: string, updateArticleDto: UpdateArticleDto) {
