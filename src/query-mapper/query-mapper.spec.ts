@@ -1,6 +1,4 @@
-import { request } from 'express';
 import { ValueMapper } from './mapper/value.mapper';
-import { AbstractParameterMapper, ParameterMapper } from './mapper/parameter-mapper.interface';
 import { AbstractQueryMapper } from './query-mapper.interface';
 import { ValueListMapper } from './mapper/value-list.mapper';
 
@@ -47,7 +45,7 @@ describe('QueryMapper', () => {
     expect(result).toHaveProperty('foo', 'bar')
   });
 
-  it('value mapper should return nothing if no value', () => {
+  it('value mapper should return nothing if param does not exists', () => {
     const mapper = new TestMapper([
       new ValueMapper('baz')
     ])

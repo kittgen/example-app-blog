@@ -4,7 +4,7 @@ export interface QueryMapper {
     map(query: Object): Object
 }
 
-interface MappedQuery {
+export interface MappedQuery {
     [dynamic: string]: any
     _rawQuery: Object
 }
