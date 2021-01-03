@@ -27,7 +27,7 @@ describe('QueryMapper', () => {
 
   /**
  * TODO
- * Search Mapper: exact ✔️, in (multiple)  // DB output options partial, start, end
+ * Value Mapper: single ✔️, list ✔️  // DB output options partial, start, end
  * DateFilter before, after (equals day,hour,min)
  * Boolean filter 
  * Numeric filter lt,lte,gt,gte
