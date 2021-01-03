@@ -12,6 +12,8 @@ import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
 import { AuthAction } from '../authorization/auth-action.decorator';
 import { ArticleAuthAction } from './articles.auth-action';
+import { ArticleQueryMapper } from './articles.query-mapper';
+import { MapQuery } from '../query-mapper/map-query.decorator';
 
 @Controller('articles')
 export class ArticlesController {
@@ -23,8 +25,11 @@ export class ArticlesController {
   }
 
   @Get()
-  findAll() {
-    return this.articlesService.findAll();
+  findAll(@MapQuery(new ArticleQueryMapper()) query) {
+    return {
+      query: query,
+      articles: this.articlesService.findAll()
+    }
   }
 
   @Get(':id')
