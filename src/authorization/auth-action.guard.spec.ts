@@ -6,8 +6,8 @@ import { AuthActionGuard } from './auth-action.guard';
 import { HttpArgumentsHost } from '@nestjs/common/interfaces';
 import { User } from '../users/entities/user.entity';
 import { Condition } from './condition';
-import { AuthzService } from './authz.service';
 import { ConditionsService } from './conditions.service';
+import { PermissionProvider } from './permission.provider';
 
 @Injectable()
 class AlwaysTrueCondition extends Condition {
@@ -40,7 +40,7 @@ describe('PolicyGuard', () => {
         AlwaysFalseCondition,
         AlwaysTrueCondition,
         {
-          provide: AuthzService,
+          provide: PermissionProvider,
           inject: [ConditionsService],
           useFactory: (conditionsService: ConditionsService) => {
             return {
