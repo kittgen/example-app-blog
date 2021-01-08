@@ -7,10 +7,10 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
+import { AuthAction } from '@kittgen/nestjs-authorization';
 import { ArticlesService } from './articles.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
-import { AuthAction } from '../authorization/auth-action.decorator';
 import { ArticleAuthAction } from './articles.auth-action';
 import { ArticleQueryMapper } from './articles.query-mapper';
 import { MapQuery } from '../query-mapper/map-query.decorator';
@@ -28,8 +28,8 @@ export class ArticlesController {
   findAll(@MapQuery(new ArticleQueryMapper()) query) {
     return {
       query: query,
-      articles: this.articlesService.findAll()
-    }
+      articles: this.articlesService.findAll(),
+    };
   }
 
   @Get(':id')

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Permission } from '../authorization/permissions/permission';
+import { Permission } from '@kittgen/nestjs-authorization';
 import { User } from '../users/entities/user.entity';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';

@@ -5,19 +5,19 @@ import { ArticlesModule } from './articles/articles.module';
 import { TagsModule } from './tags/tags.module';
 import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
-import { AuthorizationModule } from './authorization/authorization.module';
 import { MediaModule } from './media/media.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthenticationGuard } from './authorization/authn.guard';
 
 @Module({
-  imports: [
-    ArticlesModule,
-    TagsModule,
-    UsersModule,
-    RolesModule,
-    AuthorizationModule,
-    MediaModule,
-  ],
+  imports: [ArticlesModule, TagsModule, UsersModule, RolesModule, MediaModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthenticationGuard,
+    },
+  ],
 })
 export class AppModule {}
